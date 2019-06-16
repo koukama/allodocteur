@@ -9,6 +9,8 @@ import com.cours.revisions.entities.Personne;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 /**
  *
  * @author elhad
@@ -23,19 +25,39 @@ public abstract class AbstractStatisticSingleton {
     protected Double ecartTypeTaille = 0.0;
 
     public Double getMoyennePoids() {
-        return moyennePoids;
+        Double somme = 0.0;
+        for (Personne p: this.personnes) {
+            somme += p.getPoids();
+        }
+        return somme/this.personnes.size();
     }
 
     public Double getEcartTypePoids() {
-        return ecartTypePoids;
+        Double ecart = 0.0d;
+
+        for (Personne p : this.personnes){
+            ecart += Math.pow((p.getPoids() - this.getMoyennePoids()), 2.0);
+        }
+        ecart = ecart / this.personnes.size();
+        return Math.sqrt(ecart);
     }
 
     public Double getMoyenneTaille() {
-        return moyenneTaille;
+        Double somme = 0.0;
+        for (Personne p: this.personnes) {
+            somme += p.getTaille();
+        }
+        return somme/this.personnes.size();
     }
 
     public Double getEcartTypeTaille() {
-        return ecartTypeTaille;
+        Double ecart = 0.0d;
+
+        for (Personne p : this.personnes){
+            ecart += Math.pow((p.getTaille() - this.getMoyenneTaille()), 2.0);
+        }
+        ecart = ecart / this.personnes.size();
+        return Math.sqrt(ecart);
     }
 
     public List<Personne> getPersonnes() {

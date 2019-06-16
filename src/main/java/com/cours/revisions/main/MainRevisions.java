@@ -6,6 +6,9 @@
 package com.cours.revisions.main;
 
 import com.cours.revisions.singletons.AbstractStatisticSingleton;
+import com.cours.revisions.singletons.CsvStatisticSingleton;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -21,6 +24,11 @@ public class MainRevisions {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        AbstractStatisticSingleton mySingleton = null;
+        DecimalFormat df = new DecimalFormat("#.####");
+        df.setRoundingMode(RoundingMode.CEILING);
+        //AbstractStatisticSingleton mySingleton = null;
+        CsvStatisticSingleton myCsv = CsvStatisticSingleton.getInstance();
+        //myCsv.getMoyennePoids();
+        System.out.println(myCsv.getMoyennePoids() + "," + myCsv.getEcartTypePoids() + ',' + myCsv.getMoyenneTaille() + ',' + myCsv.getEcartTypeTaille());
     }
 }

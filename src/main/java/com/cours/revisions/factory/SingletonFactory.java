@@ -6,6 +6,8 @@
 package com.cours.revisions.factory;
 
 import com.cours.revisions.singletons.AbstractStatisticSingleton;
+import com.cours.revisions.singletons.CsvStatisticSingleton;
+import com.cours.revisions.singletons.JsonStatisticSingleton;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -28,6 +30,15 @@ public class SingletonFactory {
      * @return AbstractStatisticSingleton
      */
     public static AbstractStatisticSingleton getFactory(FactorySingletonType type) {
+        
+        if (type == FactorySingletonType.CSV_SINGLETON_FACTORY) {
+            return CsvStatisticSingleton.getInstance();
+        }
+        
+        if (type == FactorySingletonType.JSON_SINGLETON_FACTORY) {
+            return JsonStatisticSingleton.getInstance();
+        }
+        
         return null;
     }
 }

@@ -5,6 +5,7 @@
  */
 package com.cours.revisions.main;
 
+import com.cours.revisions.factory.SingletonFactory;
 import com.cours.revisions.singletons.AbstractStatisticSingleton;
 import com.cours.revisions.singletons.CsvStatisticSingleton;
 import java.math.RoundingMode;
@@ -26,9 +27,18 @@ public class MainRevisions {
     public static void main(String[] args) {
         DecimalFormat df = new DecimalFormat("#.####");
         df.setRoundingMode(RoundingMode.CEILING);
-        //AbstractStatisticSingleton mySingleton = null;
-        CsvStatisticSingleton myCsv = CsvStatisticSingleton.getInstance();
+        AbstractStatisticSingleton mySingleton = SingletonFactory.getFactory(SingletonFactory.FactorySingletonType.CSV_SINGLETON_FACTORY);
+        //CsvStatisticSingleton myCsv = CsvStatisticSingleton.getInstance();
         //myCsv.getMoyennePoids();
-        System.out.println(myCsv.getMoyennePoids() + "," + myCsv.getEcartTypePoids() + ',' + myCsv.getMoyenneTaille() + ',' + myCsv.getEcartTypeTaille());
+        System.out.println(mySingleton.getMoyennePoids() + "," 
+                            + mySingleton.getEcartTypePoids() + ','
+                            + mySingleton.getMoyenneTaille() + ','
+                            + mySingleton.getEcartTypeTaille());
+        
+        AbstractStatisticSingleton mySingleton2 = SingletonFactory.getFactory(SingletonFactory.FactorySingletonType.JSON_SINGLETON_FACTORY);
+        System.out.println(mySingleton2.getMoyennePoids() + "," 
+                            + mySingleton2.getEcartTypePoids() + ','
+                            + mySingleton2.getMoyenneTaille() + ','
+                            + mySingleton2.getEcartTypeTaille());
     }
 }

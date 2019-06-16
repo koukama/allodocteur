@@ -59,7 +59,7 @@ public abstract class AbstractStatisticSingleton {
         ecart = ecart / this.personnes.size();
         return Math.sqrt(ecart);
     }
-
+    
     public List<Personne> getPersonnes() {
         return personnes;
     }
